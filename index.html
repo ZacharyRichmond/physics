@@ -65,8 +65,17 @@ for(var i =0;i<ball.length;i++){
 	}
 
 	// simulation ----------------------------------------------------
-function stopClip(){
-	
+function stopClip(c,p1,p2,tr){
+	var temp1=p1;
+	var temp2=p2;
+	var move=0.1;
+	while(mag(subtractv(temp2,temp1))<tr){
+		temp1.x-=move*Math.cos(c);
+		temp1.y-=move*Math.sin(c);
+		temp2.x-=move*Math.cos(c+180);
+		temp2.y-=move*Math.sin(c+180);
+	}
+	return temp1,temp2;
 }
 	function handleCollisions(p1,p2,v1,v2,m1,m2){
 		
