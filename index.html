@@ -2,22 +2,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Physics</title>
+<title>Physics1</title>
 </head>
 <body>
 
 <canvas id="myCanvas" style="border:2px solid"></canvas>
   <script>
-	  var canvas = document.getElementById("myCanvas");
+	var canvas = document.getElementById("myCanvas");
 	var c = canvas.getContext("2d");
 
-	canvas.width = window.innerWidth - 20;
-	canvas.height = window.innerHeight - 100;
+	canvas.width = window.innerWidth - 0;
+	canvas.height = window.innerHeight - 0;
 
 	var simMinWidth = 20.0;
 	var cScale = Math.min(canvas.width, canvas.height) / simMinWidth;
 	var simWidth = canvas.width / cScale;
 	var simHeight = canvas.height / cScale;
+	  const ball=[];
+	function addBall(xi,yi,ri,xveli,yveli,mi){
+		ball.push({pos:{x:xi,y:yi},vel:{x:xveli,y:yveli},r:ri,m:mi});
+	}
 
 	function cX(pos) {
 		return pos.x * cScale;
