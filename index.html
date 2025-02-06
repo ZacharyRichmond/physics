@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Physics</title>
+<title>Physics1</title>
 </head>
 <body>
 
@@ -17,11 +17,12 @@ var canvas = document.getElementById("myCanvas");
 	var cScale = Math.min(canvas.width, canvas.height) / simMinWidth;
 	var simWidth = canvas.width / cScale;
 	var simHeight = canvas.height / cScale;
-	  const ballx=[];
-	  const bally=[];
-	  const ballxvel=[];
-	  const ballyvel=[];
-	  const ballmass=[];
+	  const ballx=[50];
+	  const bally=[50];
+	  const ballr=[5];
+	  const ballxvel=[5];
+	  const ballyvel=[5];
+	  const ballmass=[5];
 
 	function addBall(x,y,r,xvel,yvel,m){
 		ballx.push(x);
@@ -91,7 +92,7 @@ for(var i =0;i<ballx.length;i++){
 		requestAnimationFrame(update);
 	}
 
-addBall(50,50,5,5,5,5);
+//addBall(50,50,5,5,5,5);
     update();
   </script>
 
