@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Physics1</title>
+<title>Physics2</title>
 </head>
 <body>
 
@@ -17,20 +17,22 @@ var canvas = document.getElementById("myCanvas");
 	var cScale = Math.min(canvas.width, canvas.height) / simMinWidth;
 	var simWidth = canvas.width / cScale;
 	var simHeight = canvas.height / cScale;
-	  const ballpos=[];
-	  const ballr=[];
-	  const ballvel=[];
-	  const ballmass=[];
-
+	  const ball=[];
 	function addBall(xi,yi,ri,xveli,yveli,mi){
-		ballpos.push({x:xi,y:yi});
-		ballvel.push({x:xveli,y:yveli});
-		ballr.push(ri);
-		ballmass.push(mi);
+		ball.push({pos:{x:xi,y:yi},vel:{x:xveli,y:yveli},r:ri,m:mi});
 	}
 
 	  function dot(v1,v2){
 		  return v1.x*v2.x+v1.y*v2.y;
+	  }
+	  function mag(v){
+		  return Math.sqrt(v.x*v.x+v.y*v.y);
+	  }
+	  function addv(v1,v2){
+		  return{x:v1.x+v2.x,y:v1.y+v2.y};
+	  }
+	  function subtractv(v1,v2){
+		  return {x:v1.x-v2.x,y:v1.y-v2.y};
 	  }
 	  
 	function cX(pos) {
@@ -51,35 +53,50 @@ var canvas = document.getElementById("myCanvas");
 		c.clearRect(0, 0, canvas.width, canvas.height);
 
 		c.fillStyle = "#FF0000";
-for(var i =0;i<ballpos.length;i++){
+for(var i =0;i<ball.length;i++){
 		c.beginPath();			
 		c.arc(
-      cX(ballpos[i]), cY(ballpos[i]), cScale * ballr[i], 0.0, 2.0 * Math.PI); 
+      cX(ball[i].pos), cY(ball[i].pos), cScale * ball[i].r, 0.0, 2.0 * Math.PI); 
 		c.closePath();
       		c.fill();	
 }
 	}
 
 	// simulation ----------------------------------------------------
-
+function stopClip(){
+	
+}
+	function handleCollisions(p1,p2,v1,v2,m1,m2){
+		
+	}
+	  function checkCollisions(){
+		  for(var i = 0;i<ball.length;i++){
+			  for(var j = i;j<ball.length;j++){
+				if(mag(subtractv(ball[i].pos,ball[j].pos))<ball[i].r+ball[j].r){
+					ballpos[i].
+					handleCollisions(ball[i].pos,ballpos[j].pos,ballvel[i],ballvel[j],ballmass[i],ballmass[i]);
+				}  
+			  }
+		  }
+	  }
 	function simulate() {
-	for(var i =0;i<ballpos.length;i++){
-		ballvel[i].x += gravity.x * timeStep;
-		ballvel[i].y += gravity.y * timeStep;
-		ballpos[i].x += ballvel[i].x * timeStep;
-		ballpos[i].y+= ballvel[i].y * timeStep;
+	for(var i =0;i<ball.length;i++){
+		ball[i].vel.x += gravity.x * timeStep;
+		ball[i].vel.y += gravity.y * timeStep;
+		ball[i].pos.x += ball[i].vel.x * timeStep;
+		ball[i].pos.y+= ball[i].vel.y * timeStep;
 
-		if (ballpos[i].x < 0.0) {
-			ballpos[i].x = 0.0;
-			ballvel[i].x = -ballvel[i].x;
+		if (ball[i].pos.x < 0.0) {
+			ball[i].pos.x = 0.0;
+			ball[i].vel.x = -ball[i].vel.x;
 		}
-		if (ballpos[i].x > simWidth) {
-			ballpos[i].x = simWidth;
-			ballvel[i].x= -ballvel[i].x;
+		if (ball[i].pos.x > simWidth) {
+			ball[i].pos.x = simWidth;
+			ball[i].vel.x= -ball[i].vel.x;
 		}
-		if (ballpos[i].y < 0.0) {
-			ballpos[i].y = 0.0;
-			ballvel[i].y = -ballvel[i].y;
+		if (ball[i].pos..y < 0.0) {
+			ball[i].pos.y = 0.0;
+			ball[i].vel.y = -ball[i].vel.y;
 		}
 	}
 	}
