@@ -10,8 +10,8 @@
 var canvas = document.getElementById("myCanvas");
 	var c = canvas.getContext("2d");
 
-	//canvas.width = window.innerWidth - 20;
-	//canvas.height = window.innerHeight - 100;
+	canvas.width = window.innerWidth - 20;
+	canvas.height = window.innerHeight - 100;
 
 	var simMinWidth = 20.0;
 	var cScale = Math.min(canvas.width, canvas.height) / simMinWidth;
@@ -73,7 +73,7 @@ function stopClip(){
 		  for(var i = 0;i<ball.length;i++){
 			  for(var j = i;j<ball.length;j++){
 				if(mag(subtractv(ball[i].pos,ball[j].pos))<ball[i].r+ball[j].r){
-					//ballpos[i].
+					//ballpos[i]
 					handleCollisions(ball[i].pos,ballpos[j].pos,ballvel[i],ballvel[j],ballmass[i],ballmass[i]);
 				}  
 			  }
@@ -105,12 +105,12 @@ function stopClip(){
 
 	function update() {
 		simulate();
-		//draw();
+		draw();
 		requestAnimationFrame(update);
 	}
 
 //addBall(0.2,0.2,0.2,10,15,1);
- //   update();
+ update();
   </script>
 
 </body>
