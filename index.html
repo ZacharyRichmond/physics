@@ -78,7 +78,7 @@ for(var i =0;i<ballx.length;i++){
 		}
 		if (bally[i] < 0.0) {
 			bally[i] = 0.0;
-			allyvel[i] = -allyvel[i];
+			ballyvel[i] = -ballyvel[i];
 		}
 	}
 	}
@@ -91,7 +91,7 @@ for(var i =0;i<ballx.length;i++){
 		requestAnimationFrame(update);
 	}
 
-addBall(0,50,0.3,30,2,1);
+addBall(50,50,5,5,5,5);
     update();
   </script>
 
