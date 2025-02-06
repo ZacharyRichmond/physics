@@ -18,6 +18,10 @@ var canvas = document.getElementById("myCanvas");
 	var simWidth = canvas.width / cScale;
 	var simHeight = canvas.height / cScale;
 
+	function addBall(x,y,r,xvel,yvel,m){
+		
+	}
+	  
 	function cX(pos) {
 		return pos.x * cScale;
 	}
@@ -79,7 +83,7 @@ var canvas = document.getElementById("myCanvas");
 	function update() {
 		simulate();
 		draw();
-		requestAnimationFrame(update);
+		//requestAnimationFrame(update);
 	}
 
 
