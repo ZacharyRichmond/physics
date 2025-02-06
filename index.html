@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Physics1</title>
+<title>Physics</title>
 </head>
 <body>
 
@@ -17,28 +17,28 @@ var canvas = document.getElementById("myCanvas");
 	var cScale = Math.min(canvas.width, canvas.height) / simMinWidth;
 	var simWidth = canvas.width / cScale;
 	var simHeight = canvas.height / cScale;
-	  const ballx=[];
-	  const bally=[];
+	  const ballpos=[];
 	  const ballr=[];
-	  const ballxvel=[];
-	  const ballyvel=[];
+	  const ballvel=[];
 	  const ballmass=[];
 
-	function addBall(x,y,r,xvel,yvel,m){
-		ballx.push(x);
-		bally.push(y);
-		ballr.push(r);
-		ballxvel.push(xvel);
-		ballyvel.push(yvel);
-		ballmass.push(m);
-	}
-	  
-	function cX(x) {
-		return x * cScale;
+	function addBall(xi,yi,ri,xveli,yveli,mi){
+		ballpos.push({x:xi,y:yi});
+		ballvel.push({xvel:xveli,yvel:yveli});
+		ballr.push(ri);
+		ballmass.push(mi);
 	}
 
-	function cY(y) {
-		return canvas.height - y * cScale;
+	  function dot(v1,v2){
+		  return v1.x*v2.x+v1.y*v2.y;
+	  }
+	  
+	function cX(pos) {
+		return pos.x * cScale;
+	}
+
+	function cY(pos) {
+		return canvas.height - pos.y * cScale;
 	}
 
 	// scene -------------------------------------------------------
@@ -51,10 +51,10 @@ var canvas = document.getElementById("myCanvas");
 		c.clearRect(0, 0, canvas.width, canvas.height);
 
 		c.fillStyle = "#FF0000";
-for(var i =0;i<ballx.length;i++){
+for(var i =0;i<ballpos.length;i++){
 		c.beginPath();			
 		c.arc(
-      cX(ballx[i]), cY(bally[i]), cScale * ballr[i], 0.0, 2.0 * Math.PI); 
+      cX(ballpos[i]), cY(ballpos[i]), cScale * ballr[i], 0.0, 2.0 * Math.PI); 
 		c.closePath();
       		c.fill();	
 }
@@ -63,23 +63,23 @@ for(var i =0;i<ballx.length;i++){
 	// simulation ----------------------------------------------------
 
 	function simulate() {
-	for(var i =0;i<ballx.length;i++){
-		ballxvel[i] += gravity.x * timeStep;
-		ballyvel[i] += gravity.y * timeStep;
-		ballx[i] += ballxvel[i] * timeStep;
-		bally[i]+= ballyvel[i] * timeStep;
+	for(var i =0;i<ballpos.length;i++){
+		ballvel[i].x += gravity.x * timeStep;
+		ballvel[i].y += gravity.y * timeStep;
+		ballpos[i].x += ballvel[i].x * timeStep;
+		ballpos[i].y+= ballvel[i].y * timeStep;
 
-		if (ballx[i] < 0.0) {
-			ballx[i] = 0.0;
-			ballxvel[i] = -ballxvel[i];
+		if (ballpos[i].x < 0.0) {
+			ballpos[i].x = 0.0;
+			ballvel[i].x = -ballvel[i].x;
 		}
-		if (ballx[i] > simWidth) {
-			ballx[i] = simWidth;
-			ballxvel[i]= -ballxvel[i];
+		if (ballpos[i].x > simWidth) {
+			ballpos[i].x = simWidth;
+			ballvel[i].x= -ballvel[i].x;
 		}
-		if (bally[i] < 0.0) {
-			bally[i] = 0.0;
-			ballyvel[i] = -ballyvel[i];
+		if (ballpos[i].y < 0.0) {
+			ballpos[i].y = 0.0;
+			ballvel[i].y = -ballvel[i].y;
 		}
 	}
 	}
