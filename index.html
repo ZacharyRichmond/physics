@@ -8,6 +8,7 @@
 
 <canvas id="myCanvas" style="border:2px solid"></canvas>
   <script>
+	  /*
 	var canvas = document.getElementById("myCanvas");
 	var c = canvas.getContext("2d");
 
@@ -88,7 +89,7 @@
 	}
 	
 	update();
-	  /*
+	  */
 var canvas = document.getElementById("myCanvas");
 	var c = canvas.getContext("2d");
 
@@ -176,7 +177,7 @@ function stopClip(){
 			ball[i].pos.x = simWidth;
 			ball[i].vel.x= -ball[i].vel.x;
 		}
-		if (ball[i].pos..y < 0.0) {
+		if (ball[i].pos.y < 0.0) {
 			ball[i].pos.y = 0.0;
 			ball[i].vel.y = -ball[i].vel.y;
 		}
@@ -191,9 +192,9 @@ function stopClip(){
 		requestAnimationFrame(update);
 	}
 
-//addBall(0.2,0.2,0.2,10,15,1);
+addBall(0.2,0.2,0.2,10,15,1);
  update();
- */
+
   </script>
 
 </body>
