@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Physics1</title>
+<title>Physics</title>
 </head>
 <body>
 
@@ -18,9 +18,9 @@
 	var cScale = Math.min(canvas.width, canvas.height) / simMinWidth;
 	var simWidth = canvas.width / cScale;
 	var simHeight = canvas.height / cScale;
-	 let ball=[];
+	 const e=[];
 	function addBall(xi,yi,ri,xveli,yveli,mi){
-		ball.push({pos:{x:xi,y:yi},vel:{x:xveli,y:yveli},r:ri,m:mi});
+		e.push({pos:{x:xi,y:yi},vel:{x:xveli,y:yveli},r:ri,m:mi});
 	}
 
 	function cX(pos) {
