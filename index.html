@@ -17,12 +17,12 @@ var canvas = document.getElementById("myCanvas");
 	var cScale = Math.min(canvas.width, canvas.height) / simMinWidth;
 	var simWidth = canvas.width / cScale;
 	var simHeight = canvas.height / cScale;
-	  const ballx=[50];
-	  const bally=[50];
-	  const ballr=[5];
-	  const ballxvel=[5];
-	  const ballyvel=[5];
-	  const ballmass=[5];
+	  const ballx=[];
+	  const bally=[];
+	  const ballr=[];
+	  const ballxvel=[];
+	  const ballyvel=[];
+	  const ballmass=[];
 
 	function addBall(x,y,r,xvel,yvel,m){
 		ballx.push(x);
@@ -92,7 +92,7 @@ for(var i =0;i<ballx.length;i++){
 		requestAnimationFrame(update);
 	}
 
-addBall(50,50,5,5,5,5);
+addBall(0.2,0.2,0.2,10,15,1);
     update();
   </script>
 
